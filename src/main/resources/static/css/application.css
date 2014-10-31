@@ -1,0 +1,31 @@
+/*
+Colours should match http://www.thisweekincf.com/
+*/
+
+.jumbotron {
+	margin-top: 48px;
+	background-color: rgb(244, 245, 253);
+}
+
+body {
+	background-color: rgb(218, 218, 250);
+}
+
+/*
+Creative misuse of input groups learned from cfx and morten.c: http://stackoverflow.com/questions/22774780/bootstrap-full-width-text-input-within-inline-form#comment41079374_22774870
+*/
+
+.input-group.full-width {
+	width: 100%;
+}
+.input-group.full-width .input-group-btn:last-child > .btn {
+	margin-left: 5px;
+}
+.input-group.full-width .input-group-btn:last-child > .btn {
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+}
+.input-group.full-width .form-control:first-child {
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+}

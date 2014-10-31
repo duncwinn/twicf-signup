@@ -29,6 +29,7 @@ dependencies {
     
     providedRuntime (group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat')
     runtime (group: 'org.postgresql', name: 'postgresql', version: '9.3-1102-jdbc41')
+    runtime (group: 'org.webjars', name: 'bootstrap', version: '3.3.0')
     
     testCompile (group: 'org.springframework.boot', name: 'spring-boot-starter-test')
     testCompile (group: 'org.fluentlenium', name: 'fluentlenium-core', version: '0.10.2')
