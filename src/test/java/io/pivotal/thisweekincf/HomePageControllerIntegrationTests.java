@@ -18,6 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 @WebAppConfiguration
 public class HomePageControllerIntegrationTests {
 
+	// testing the controller and testing spring can inject the controller and
+	// the controller in concert with the other components such as DB does the
+	// right thing
+
 	@Autowired
 	HomePageController controller;
 

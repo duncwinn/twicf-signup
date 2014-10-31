@@ -33,8 +33,8 @@ public class HomePageControllerMvcTests {
 	@Test
 	public void theHomePageFormatsTheDateSensibly() throws Exception {
 		mockMvc.perform(get("/"))
-			.andExpect(status().isOk())
-			.andExpect(xpath("//*[@id='today']").string(matchesPattern("\\d{1,2} \\w{3} \\d{4}")));
+			.andExpect(status().isOk()) // 200
+			.andExpect(xpath("//*[@id='today']").string(matchesPattern("\\d{1,2} \\w{3} \\d{4}"))); // xpath is a query language for structured text **ML
 	}
 
 }

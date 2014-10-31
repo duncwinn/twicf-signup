@@ -30,6 +30,7 @@ public abstract class WebTestBase extends FluentTest {
 		super();
 	}
 
+	// WebDriver is a headless browser (htmlunit)
 	@Override
 	public WebDriver getDefaultDriver() {
 		MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
