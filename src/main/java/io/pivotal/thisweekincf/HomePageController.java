@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomePageController {
+final class HomePageController {
 
 	private DateService dateService;
 
 	@Autowired
-	public HomePageController(DateService dateService) {
+	HomePageController(DateService dateService) {
 		this.dateService = dateService;
 	}
 
 	@RequestMapping("/")
-	public ModelAndView homePage() {
+	ModelAndView homePage() {
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("today", dateService.getDate());
 		modelAndView.addObject("dateFormat", DateTimeFormatter.ofPattern("d MMM uuuu"));

@@ -23,6 +23,7 @@ public class HomePageControllerMvcTests {
 
 	@Autowired
 	private WebApplicationContext context;
+
 	private MockMvc mockMvc;
 
 	@Before

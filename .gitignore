@@ -1,7 +1,4 @@
-.gradle/
-build/
-
-.project
-.classpath
-.settings/
-.eclipse/
+target
+.idea/libraries
+.idea/tasks.xml
+.idea/workspace.xml

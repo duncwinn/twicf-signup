@@ -5,11 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Subscription {
+class Subscription {
 
 	@Id
 	@GeneratedValue
 	private int id;
+
 	private String emailAddress;
 
 	public Subscription(String emailAddress) {
@@ -17,7 +18,7 @@ public class Subscription {
 	}
 
 	// jpa requires this
-	protected Subscription() {
+	Subscription() {
 	}
 
 	public String getEmailAddress() {
