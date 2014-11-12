@@ -1,9 +1,8 @@
 ---
 spring:
   datasource:
-    url: jdbc:postgresql://localhost/thisweekincf
-    username: pivotal
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:this_week_in_cf;MODE=PostgreSQL
   jpa:
-    generate-ddl: true
-  thymeleaf:
-    cache: false
+    hibernate.ddl-auto: none
+    show_sql: true

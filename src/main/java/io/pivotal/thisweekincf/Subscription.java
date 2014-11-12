@@ -9,15 +9,14 @@ class Subscription {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private volatile int id;
 
-	private String emailAddress;
+	private volatile String emailAddress;
 
 	public Subscription(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
 
-	// jpa requires this
 	Subscription() {
 	}
 

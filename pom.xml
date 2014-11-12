@@ -37,38 +37,18 @@
     <properties>
         <bootstrap.version>3.3.0</bootstrap.version>
         <java.version>1.8</java.version>
-        <fluentlenium.version>0.10.2</fluentlenium.version>
-        <htmlunit.version>2.13</htmlunit.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>net.sourceforge.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>${htmlunit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fluentlenium</groupId>
-            <artifactId>fluentlenium-core</artifactId>
-            <version>${fluentlenium.version}</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc41</version>
-        </dependency>
-
-        <!-- https://github.com/spring-projects/spring-test-htmlunit/issues/37 -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test-htmlunit</artifactId>
-            <version>1.0.0.BUILD-SNAPSHOT</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -84,7 +64,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <dependency>
