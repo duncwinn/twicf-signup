@@ -2,10 +2,12 @@ package io.pivotal.thisweekincf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,18 +30,11 @@ final class AdminController {
     }
 
 
-//    @RequestMapping(method = RequestMethod.POST, value = "/admin")
-//    ModelAndView createSubscription(String emailAddress) {
-//
-//        // Save the submitted emailAddress in the DB via the repository
-//        List<Subscription> subscriptionList;
-//        subscriptionList = subscriptionRepository.findAll();
-//
-//
-//
-//        // Return the ModelAndView form... where to go next
-//        return "subscribedConfirmation";
-//    }
-
+    @RequestMapping(method = RequestMethod.POST, value = "/admin")
+    ModelAndView createSubscription() {
+        ModelAndView modelAndView = new ModelAndView("adminResponse");
+        modelAndView.addObject("subscriptions",subscriptionRepository.findAll());
+        return modelAndView;
+    }
 
 }

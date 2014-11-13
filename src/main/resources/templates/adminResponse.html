@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administrate</title>
+
+    <link href="webjars/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet" />
+    <link href="css/application.css" rel="stylesheet" />
+  </head>
+  <body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Hello, Cloud Foundry Admin!</h1>
+			<p>Here is a list of subscribers:</p>
+            <tr th:each="subscription : ${subscriptions}">
+                <td th:text="${subscription.getEmailAddress()}">Text ...</td>
+            </tr>
+		</div>
+	</div>
+
+    <script src="webjars/jquery/1.11.1/jquery.js"></script>
+    <script src="webjars/bootstrap/3.3.0/js/bootstrap.js"></script>
+  </body>
+</html>
