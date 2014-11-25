@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +14,7 @@
 		<div class="jumbotron">
 			<h1>Hello, Cloud Foundry Admin!</h1>
 			<p>Do you want to retrieve a list of subscribers?</p>
-			<form method="post" action="" class="form-inline" role="form">
+            <form method="post" th:action="@{''}" class="form-inline" role="form">
 				<div class="input-group full-width">
 					<span class="input-group-btn">
 						<button type="submit" id="subscriberList" class="btn btn-primary">Show me the CF subscribers</button>

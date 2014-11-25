@@ -25,6 +25,9 @@
         <module name="thisweekincf" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="thisweekincf" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 
