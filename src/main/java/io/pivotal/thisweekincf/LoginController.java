@@ -17,14 +17,16 @@ package io.pivotal.thisweekincf;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @author Rob Winch
+ * @author Duncan Winn
  */
 @Controller
-public class LoginController {
-    @RequestMapping("/login")
-    public String login() {
+final class LoginController {
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    String login() {
         return "login";
     }
 }
+
