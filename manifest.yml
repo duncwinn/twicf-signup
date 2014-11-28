@@ -4,6 +4,6 @@ applications:
   memory: 512M
   instances: 1
   host: twicf-registration-${random-word}
-  path: build/libs/thisweekincf.war
+  path: target/thisweekincf.jar
   services:
   - duncdb

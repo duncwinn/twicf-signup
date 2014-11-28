@@ -28,29 +28,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by duncwinn on 25/11/14.
  * http://spring.io/blog/2014/05/23/preview-spring-security-test-web-security
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = Application.class)
+//@WebAppConfiguration
 public class SecurityTest {
 
-    @Autowired
-    private WebApplicationContext context;
-
-    @Autowired
-    private SubscriptionRepository subscriptionRepository;
-
-    @Autowired
-    private Filter springSecurityFilterChain;
-
-    private MockMvc mvc;
-
-    @Before
-    public void setup() {
-        mvc = MockMvcBuilders
-                .webAppContextSetup(context)
-                .addFilters(springSecurityFilterChain)
-                .build();
-    }
+//    @Autowired
+//    private WebApplicationContext context;
+//
+//    @Autowired
+//    private SubscriptionRepository subscriptionRepository;
+//
+//    @Autowired
+//    private Filter springSecurityFilterChain;
+//
+//    private MockMvc mvc;
+//
+//    @Before
+//    public void setup() {
+//        mvc = MockMvcBuilders
+//                .webAppContextSetup(context)
+//                .addFilters(springSecurityFilterChain)
+//                .build();
+//    }
 
 //    @Test
 //    public void postWithCsrfWorks() throws Exception {
@@ -82,22 +82,22 @@ public class SecurityTest {
 //                .andExpect(unauthenticated());
 //    }
 
-
-    @Configuration
-    @EnableWebMvcSecurity
-    @EnableWebMvc
-    static class Config extends WebSecurityConfigurerAdapter {
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-        }
-
-        @Autowired
-        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-            auth
-                    .inMemoryAuthentication()
-                    .withUser("user").password("password").roles("USER");
-        }
-    }
+//
+//    @Configuration
+//    @EnableWebMvcSecurity
+//    @EnableWebMvc
+//    static class Config extends WebSecurityConfigurerAdapter {
+//
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//        }
+//
+//        @Autowired
+//        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//            auth
+//                    .inMemoryAuthentication()
+//                    .withUser("user").password("password").roles("USER");
+//        }
+//    }
 }
 
