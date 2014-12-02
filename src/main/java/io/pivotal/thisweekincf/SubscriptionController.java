@@ -1,6 +1,7 @@
 package io.pivotal.thisweekincf;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,22 +38,24 @@ final class SubscriptionController {
     /*
     Step 2: Post data back
     Step 3: Display Confirmation
-
-	// This is the post handler that gets called when you click the subscribe method on the form
-
+	This is the post handler that gets called when you click the subscribe method on the form.
 	This method hands back the view name.
-
 	"/" the / is redundant
-	@RequestParam is redundant but good practice - Spring will match via variable name if it's
-	the same as in the view
+	@RequestParam is redundant but good practice - Spring will match via variable name if it's the same in the view
 	*/
     @RequestMapping(method = RequestMethod.POST, value = "")
     String createSubscription(@RequestParam String emailAddress) {
 
-        // Save the submitted emailAddress in the DB via the repository
-        subscriptionRepository.save(new Subscription(emailAddress));
+        try {
+            // Save the submitted emailAddress in the DB via the repository
+            subscriptionRepository.save(new Subscription(emailAddress));
+        }catch(DataIntegrityViolationException e) {
+            //DataIntegrityViolationException are thrown if email already exists in DB because of
+            //DDL specifies CONSTRAINT unique_email_address UNIQUE (email_address)
+            return "redirect:/reconfirmation";
+        }
 
-        // Return the ModelAndView form... where to go next
+        // Return the view via redirect... where to go next
         return "redirect:/confirmation";
     }
 
@@ -63,4 +66,10 @@ final class SubscriptionController {
         return "subscribedConfirmation";
     }
 
+    //Use this idiom to stop resubmitting of the form when refreshing the browser.
+    //When refreshing the GET will be refreshed and not the post.
+    @RequestMapping(method = RequestMethod.GET, value = "/reconfirmation")
+    String reconfirmation() {
+        return "subscribedReConfirmation";
+    }
 }
