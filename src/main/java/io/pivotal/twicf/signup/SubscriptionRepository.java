@@ -1,4 +1,4 @@
-package io.pivotal.thisweekincf;
+package io.pivotal.twicf.signup;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

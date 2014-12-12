@@ -23,11 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="thisweekincf" />
+        <module name="twicf-signup" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="thisweekincf" target="1.8" />
+      <module name="twicf-signup" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
-

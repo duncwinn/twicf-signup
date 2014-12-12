@@ -26,23 +26,25 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.1.8.RELEASE</version>
+        <version>1.2.0.RELEASE</version>
     </parent>
 
     <groupId>io.pivotal</groupId>
-    <artifactId>thisweekincf</artifactId>
+    <artifactId>twicf-signup</artifactId>
     <version>1.0.0.BUILD-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <bootstrap.version>3.3.0</bootstrap.version>
         <java.version>1.8</java.version>
+        <spring-cloud.version>1.1.0.RELEASE</spring-cloud.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>postgresql</groupId>
@@ -75,6 +77,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+            <version>${spring-cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-spring-service-connector</artifactId>
+            <version>${spring-cloud.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.webjars</groupId>
@@ -84,7 +96,7 @@
     </dependencies>
 
     <build>
-        <finalName>thisweekincf</finalName>
+        <finalName>twicf-signup</finalName>
 
         <plugins>
             <plugin>

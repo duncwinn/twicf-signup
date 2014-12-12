@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/thisweekincf.iml" filepath="$PROJECT_DIR$/thisweekincf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twicf-signup.iml" filepath="$PROJECT_DIR$/twicf-signup.iml" />
     </modules>
   </component>
 </project>
-

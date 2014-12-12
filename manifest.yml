@@ -1,9 +1,9 @@
 ---
 applications:
-- name: twicf-registration
+- name: twicf-signup
   memory: 512M
   instances: 1
-  host: twicf-registration-${random-word}
-  path: target/thisweekincf.jar
+  host: twicf-signup-${random-word}
+  path: target/twicf-signup.jar
   services:
-  - duncdb
+  - twicf-signup-db

@@ -1,4 +1,4 @@
-package io.pivotal.thisweekincf;
+package io.pivotal.twicf.signup;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,9 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by duncwinn on 12/11/2014.
@@ -25,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class AdminControllerMvcTests {
+public class SubscriptionControllerMvcTests {
 
     @Autowired
     private WebApplicationContext context;
@@ -41,30 +39,36 @@ public class AdminControllerMvcTests {
     }
 
     @Test
-    public void adminPageIsAccessible() throws Exception {
-        mockMvc.perform(get("/admin"))
+    public void subscriptionPageIsAccessible() throws Exception {
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
 
     }
 
     @Test
     public void expectedFormElementsArePresent() throws Exception {
-        mockMvc.perform(get("/admin"))
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(xpath("//button[@id='subscriberList']").nodeCount(1));
+                .andExpect(xpath("//input[@id='emailAddress']").nodeCount(1))
+                .andExpect(xpath("//button[@id='subscribe']").nodeCount(1));
     }
 
-    /*
+    @Test
     public void postCreatesANewSubscription() throws Exception {
         assertEquals(0, this.subscriptionRepository.findAll().size());
 
         mockMvc.perform(post("/").param("emailAddress", "testing@example.com"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(xpath("//h1[@id='message']").string("Thanks for subscribing!"));
+                .andExpect(status().isFound())
+                .andExpect(header().string("Location", "/confirmation"));
 
         assertEquals(1, this.subscriptionRepository.findAll().size());
         assertNotNull(this.subscriptionRepository.findByEmailAddress("testing@example.com"));
+    }
 
-    }    */
+    @Test
+    public void displaysConfirmation() throws Exception {
+        mockMvc.perform(get("/confirmation"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//h1[@id='message']").string("Thanks for subscribing!"));
+    }
 }

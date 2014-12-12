@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="thisweekincf" />
+          <element id="module-output" name="twicf-signup" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.h2database:h2:1.3.176" />
@@ -80,7 +80,7 @@
           <element id="library" level="project" name="Maven: org.webjars:jquery:1.11.1" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="thisweekincf/web/Web" />
+      <element id="javaee-facet-resources" facet="twicf-signup/web/Web" />
     </root>
   </artifact>
 </component>

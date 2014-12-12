@@ -6,5 +6,3 @@ CREATE TABLE subscription (
 
   CONSTRAINT unique_email_address UNIQUE (email_address)
 );
-
-INSERT INTO subscription VALUES (DEFAULT,'dwinn@pivotal.io','foo', 'USER');

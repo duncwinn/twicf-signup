@@ -1,0 +1,50 @@
+//////////////////////////////////////////////////////////////////////////////////////////////
+///    Postgres
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        ///General Notes on PSQL////////////////////////////////////////////////////////////////////////////////////////////////
+        //For testing SQL use SQUirrle -
+        //copy libs form .m2: cp postgresql-9.1-901.jdbc4.jar /Applications/SQuirreLSQL.app/Contents/Resources/Java/lib/
+        //create user: create user postgres;
+        //create db: create database twicfdb;
+        //logon:  psql -U postgres twicfdb
+        //logon: psql twicfdb;
+        //then grant privileges for user postgres: grant all on subscription to postgres;
+        //exit: ctrl d
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+///    ToDo
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+//Understand why H2 does not work.
+//To Do - Spring Profiles Button / Question Mark on Admin Screen
+//Cloud Connectors
+//Send Grid
+//Unsubscribe link - which emails you and unsubscribe link with a time sensitive URL?
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+///    LOGGING
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+Extract from logback.xml (nolonger required because log levels were set in the application.yml
+
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework.security" level="debug"/>
+
+    <root level="info">
+        <appender-ref ref="stdout"/>
+    </root>
+
+</configuration>

@@ -1,28 +1,17 @@
+---
 spring:
   datasource:
     driverClassName: org.h2.Driver
     url: jdbc:h2:mem:this_week_in_cf;MODE=PostgreSQL
-    jpa:
-      hibernate.ddl-auto: none
-      show_sql: true
+  jpa:
+    hibernate.ddl-auto: none
+    show_sql: true
+
+#logging.level.org.springframework.security: DEBUG
+
 ---
 spring:
   profiles: dev
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/twicfdb
-    jpa:
-      hibernate.ddl-auto: validate
-      show_sql: true
----
-spring:
-  profiles: cloud
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/duncdb
-    jpa:
-      hibernate.ddl-auto: none
-      show_sql: true
----
-
-
