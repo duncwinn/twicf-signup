@@ -20,9 +20,9 @@ import javax.sql.DataSource;
  *
  */
 
-@Configuration
-@EnableWebMvcSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//@Configuration
+//@EnableWebMvcSecurity
+public class UnUsedWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //DataSource is required for jdbcAuthentication; this is picked up via application.yml
     @Autowired
@@ -61,16 +61,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("SELECT email_address AS username, password, TRUE FROM subscription WHERE email_address=? ")
                 .authoritiesByUsernameQuery("select email_address AS username, role from subscription WHERE email_address=?")
                 .passwordEncoder(new PlaintextPasswordEncoder());
-                //For ease, cheat and populate DB via V1_subscription DDL; should be populated independent to app via DBA.
+                //For ease, cheat and populate DB via V1_subscription DDL;
+                //Ideally this should be populated independent to app via DBA.
 
-        ///General Notes////////////////////////////////////////////////////////////////////////////////////////////////
-        //For testing SQL use SQUirrle -
-        //copy libs form .m2: cp postgresql-9.1-901.jdbc4.jar /Applications/SQuirreLSQL.app/Contents/Resources/Java/lib/
-        //create user: create user postgres;
-        //create db: create database twicfdb;
-        //logon:  psql -U postgres twicfdb
-        //then grant privileges for user postgres: grant all on subscription to postgres;
-        //exit: ctrl d
+
+
+
 
     }
 }
