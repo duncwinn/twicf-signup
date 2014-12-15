@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+//import com.github.sendgrid.SendGrid;
+//import com.sendgrid.SendGrid;
 
 /*
 We are using @Controller.
@@ -52,6 +54,19 @@ final class SubscriptionController {
         }catch(DataIntegrityViolationException e) {
             //DataIntegrityViolationException are thrown if email already exists in DB because of
             //DDL specifies CONSTRAINT unique_email_address UNIQUE (email_address)
+//
+//            String sendgrid_username = "dwinn@pivotal.io";
+//            String sendgrid_password = "password";
+//
+//            SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password);
+//
+//            sendgrid.addTo("dwinn@pivotal.io");
+//            sendgrid.setFrom("other@example.com");
+//            sendgrid.setSubject("Hello World");
+//            sendgrid.setText("My first email through SendGrid");
+//
+//            sendgrid.send();
+
             return "redirect:/reconfirmation";
         }
 
@@ -62,9 +77,7 @@ final class SubscriptionController {
     //Use this idiom to stop resubmitting of the form when refreshing the browser.
     //When refreshing the GET will be refreshed and not the post.
     @RequestMapping(method = RequestMethod.GET, value = "/confirmation")
-    String confirmation() {
-        return "subscribedConfirmation";
-    }
+    String confirmation() {return "subscribedConfirmation";}
 
     //Use this idiom to stop resubmitting of the form when refreshing the browser.
     //When refreshing the GET will be refreshed and not the post.

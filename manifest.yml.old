@@ -1,0 +1,9 @@
+---
+applications:
+- name: twicf-registration
+  memory: 512M
+  instances: 1
+  host: twicf-registration-${random-word}
+  path: target/thisweekincf.jar
+  services:
+  - duncdb

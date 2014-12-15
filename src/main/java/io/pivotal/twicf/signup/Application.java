@@ -40,20 +40,21 @@ public class Application {
     @ServiceScan
     @Profile("cloud")
     static class CloudConfiguration {
-
     }
 
-
+//    //Once you define the above 4 lines you can access any injected services.
 //    @Bean
 //    Object doSomethingWithADataSource(DataSource dataSource) {
 //        // TOOD: With DataSource
 //    }
 
+    //This section is a lightweight replacement for WebSecurityConfig
     @Configuration
     static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
+            //If IDEA formatting was on we need the below to stop it getting reformatted
             // @formatter:off
             http
                 .authorizeRequests()

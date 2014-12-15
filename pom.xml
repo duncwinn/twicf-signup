@@ -87,6 +87,11 @@
             <artifactId>spring-cloud-spring-service-connector</artifactId>
             <version>${spring-cloud.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.sendgrid.SendGrid</groupId>
+            <version>2.1.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.webjars</groupId>

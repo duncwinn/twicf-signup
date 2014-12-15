@@ -1,9 +1,1 @@
----
-applications:
-- name: twicf-signup
-  memory: 512M
-  instances: 1
-  host: twicf-signup-${random-word}
-  path: target/twicf-signup.jar
-  services:
-  - twicf-signup-db
+src/main/resources/manifest.yml

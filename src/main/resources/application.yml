@@ -15,3 +15,6 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/twicfdb
+  jpa:
+    hibernate.ddl-auto: verify
+    show_sql: true
