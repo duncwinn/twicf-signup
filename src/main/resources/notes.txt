@@ -23,6 +23,7 @@
 5. Unsubscribe link - which emails you and unsubscribe link with a time sensitive URL?
 6. Clean up packaging
 7. pom not visable (files don't appear part of the project).
+8. Git
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
