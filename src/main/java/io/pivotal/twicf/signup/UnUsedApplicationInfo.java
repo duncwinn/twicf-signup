@@ -4,12 +4,12 @@ package io.pivotal.twicf.signup;
  * Created by duncwinn on 15/12/14.
  * Used to provide info on profiles and services
  */
-public class ApplicationInfo {
+public class UnUsedApplicationInfo {
 
     private String[] profiles;
     private String[] services;
 
-    public ApplicationInfo(String[] profiles, String[] services) {
+    public UnUsedApplicationInfo(String[] profiles, String[] services) {
         this.profiles = profiles;
         this.services = services;
     }

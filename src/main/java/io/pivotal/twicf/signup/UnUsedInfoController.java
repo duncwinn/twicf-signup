@@ -1,6 +1,5 @@
 package io.pivotal.twicf.signup;
 
-import io.pivotal.twicf.signup.ApplicationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.service.ServiceInfo;
@@ -17,21 +16,21 @@ import java.util.Map;
  * Created by duncwinn on 15/12/14.
  */
 @Controller
-public class InfoController {
+public class UnUsedInfoController {
     @Autowired(required = false)
     private Cloud cloud;
 
     private Environment springEnvironment;
 
     @Autowired
-    public InfoController(Environment springEnvironment) {
+    public UnUsedInfoController(Environment springEnvironment) {
         this.springEnvironment = springEnvironment;
     }
 
     @ResponseBody
     @RequestMapping(value = "/info")
-    public ApplicationInfo info() {
-        return new ApplicationInfo(springEnvironment.getActiveProfiles(), getServiceNames());
+    public UnUsedApplicationInfo info() {
+        return new UnUsedApplicationInfo(springEnvironment.getActiveProfiles(), getServiceNames());
     }
 
     @RequestMapping(value = "/env")

@@ -1,1 +1,12 @@
-src/main/resources/manifest.yml
+---
+applications:
+- name: twicf-signup
+  memory: 512M
+  instances: 1
+  host: twicf-signup
+  path: target/twicf-signup.jar
+  services:
+  - twicf-signup-db
+  env:
+    SECURITY_USER_PASSWORD: letme1n
+    SECURITY_USER_NAME: duncwinn

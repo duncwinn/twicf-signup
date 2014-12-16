@@ -7,33 +7,40 @@
     <title>Administrate</title>
 
     <link href="webjars/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet" />
-    <link href="css/application.css" rel="stylesheet" />
+    <!--We use thymeleaf to apply the css and an explicit link to the application css when we
+    are not running in a server. else just linking to css/application.css will only render in a server and not in a
+    statci env-->
+    <link th:href="@{css/application.css}" href="../static/css/application.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="header" ng-controller="InfoController" class="col-xs-12">
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">twicf <span class="glyphicon glyphicon-music"></span></a>
-            <ul class="navbar-nav">
-              <!--<li></li>-->
-            </ul>
-          </div>
+    <ul>
+      <li th:each="profile : ${profiles}" th:text="${profile}">test-profile</li>
+      <li th:remove="all">test-profile-2</li>
+    </ul>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-info-sign icon-white"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a><strong>Profiles:</strong> {{info.profiles.join()}}</a></li>
-                <li><a><strong>Services:</strong> {{info.services.join()}}</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    <!--<div id="header" ng-controller="InfoController" class="col-xs-12">-->
+      <!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">-->
+        <!--<div class="container">-->
+          <!--<div class="navbar-header">-->
+            <!--<a class="navbar-brand" href="#">twicf <span class="glyphicon glyphicon-music"></span></a>-->
+            <!--<ul class="navbar-nav">-->
+              <!--&lt;!&ndash;<li></li>&ndash;&gt;-->
+            <!--</ul>-->
+          <!--</div>-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li class="dropdown">-->
+              <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                <!--<span class="glyphicon glyphicon-info-sign icon-white"></span>-->
+              <!--</a>-->
+              <!--<ul class="dropdown-menu">-->
+                <!--<li><a><strong>Profiles:</strong> {{info.profiles.join()}}</a></li>-->
+                <!--<li><a><strong>Services:</strong> {{info.services.join()}}</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</nav>-->
+    <!--</div>-->
 	<div class="container">
 		<div class="jumbotron">
 			<h1>Hello, Cloud Foundry Admin!</h1>

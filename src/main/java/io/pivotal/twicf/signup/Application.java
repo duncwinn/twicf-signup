@@ -42,13 +42,15 @@ public class Application {
     static class CloudConfiguration {
     }
 
-//    //Once you define the above 4 lines you can access any injected services.
+//    //Once you define the above 4 lines for "CloudConfiguration" you can access any injected services.
+//    //For Example
 //    @Bean
 //    Object doSomethingWithADataSource(DataSource dataSource) {
 //        // TOOD: With DataSource
 //    }
 
     //This section is a lightweight replacement for WebSecurityConfig
+    //Needs some additional refactoring as we should not have to include webjars and css - boot should take care of that
     @Configuration
     static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -58,7 +60,7 @@ public class Application {
             // @formatter:off
             http
                 .authorizeRequests()
-                    .antMatchers("/", "/confirmation", "/reconfirmation", "/webjars/**").permitAll()
+                    .antMatchers("/", "/confirmation", "/reconfirmation","/nomailconfirmation","/webjars/**", "/css/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

@@ -88,8 +88,8 @@
             <version>${spring-cloud.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.sendgrid.SendGrid</groupId>
-            <version>2.1.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
 

@@ -1,8 +1,10 @@
+Author: duncwinn
+Date: 2014
+Info: Duncan's general pointers during the development of this app.
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///    Postgres
 //////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
         ///General Notes on PSQL////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,19 +21,41 @@
 ///    ToDo
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-//Understand why H2 does not work.
-//To Do - Spring Profiles Button / Question Mark on Admin Screen
-//Cloud Connectors
-//Send Grid
-//Unsubscribe link - which emails you and unsubscribe link with a time sensitive URL?
+2. To Do - Spring Profiles Button / Question Mark on Admin Screen
+3. Cloud Connectors
+4. How do you ignore Spring Security locally?
+5. Unsubscribe link - which emails you and unsubscribe link with a time sensitive URL?
 
 
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+///    DONE
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+1. Understand why H2 does not work: this was due to the SQL password inject - for some reason it did not work properly
+We moved the security Username/password into env vars. This means they are not part of the app so secure but they
+don't have the heavy overhead of using a DB. H@ is now working again.
+
+2. Git was pointing to the old repo - changed .git/config to point to the correct repo, then git add . / git commit / git push
+
+3. Mail the application.yml contained properties for mail but It's bad to have uname and passwd in a properties file
+so we moved these to env vars for dev and introspect vcap.services for CF
+
+  mail:
+#    username: 1kclQOItwV
+#    host: smtp.sendgrid.net
+#    password: Ulq1PwMnON
+    port: 2525
+
+4. pom and other files not visible (files don't appear part of the project). packages view was selected - got back to project to see these files
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///    LOGGING
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-Extract from logback.xml (nolonger required because log levels were set in the application.yml
+Extract from logback.xml (nolonger required because log levels were set in the application.yml)
 
 <configuration>
 
@@ -50,3 +74,42 @@ Extract from logback.xml (nolonger required because log levels were set in the a
     </root>
 
 </configuration>
+
+
+/////////////////////
+log4j.xml config  ///
+/////////////////////
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+                     xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+        </layout>
+    </appender>
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="console" />
+    </root>
+
+    <!-- debug component level -->
+    <logger name="org.springframework">
+        <level value="DEBUG" />
+        <appender-ref ref="console" />
+    </logger>
+
+</log4j:configuration>
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+///    PROFILES
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+We are using env vars to set the profile but equally it could be set via JVM as per below
+ -Dspring.profiles.active=in-memory
+
