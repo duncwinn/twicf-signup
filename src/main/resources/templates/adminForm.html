@@ -10,38 +10,52 @@
     <!--We use thymeleaf to apply the css and an explicit link to the application css when we
     are not running in a server. else just linking to css/application.css will only render in a server and not in a
     statci env-->
+    <!--It's important to keep your app after bootstrap as bootstrap may otherwise overide your css-->
     <link th:href="@{css/application.css}" href="../static/css/application.css" rel="stylesheet" />
   </head>
   <body>
-    <ul>
-      <li th:each="profile : ${profiles}" th:text="${profile}">test-profile</li>
-      <li th:remove="all">test-profile-2</li>
-    </ul>
 
-    <!--<div id="header" ng-controller="InfoController" class="col-xs-12">-->
-      <!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">-->
-        <!--<div class="container">-->
-          <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="#">twicf <span class="glyphicon glyphicon-music"></span></a>-->
-            <!--<ul class="navbar-nav">-->
-              <!--&lt;!&ndash;<li></li>&ndash;&gt;-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--<ul class="nav navbar-nav navbar-right">-->
-            <!--<li class="dropdown">-->
-              <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-                <!--<span class="glyphicon glyphicon-info-sign icon-white"></span>-->
-              <!--</a>-->
-              <!--<ul class="dropdown-menu">-->
-                <!--<li><a><strong>Profiles:</strong> {{info.profiles.join()}}</a></li>-->
-                <!--<li><a><strong>Services:</strong> {{info.services.join()}}</a></li>-->
-              <!--</ul>-->
-            <!--</li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</nav>-->
-    <!--</div>-->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profiles <span class="caret"></span></a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li th:each="profile : ${profiles}">
+                  <a href="#" th:text="${profile}">test-profile</a>
+                </li>
+
+                <li th:remove="all">test-profile-2</li>
+              </ul>
+
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services <span class="caret"></span></a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li th:each="service : ${services}">
+                  <a href="#" th:text="${service}">test-service</a>
+                </li>
+              </ul>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
 	<div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <img th:src="@{cloud-foundry-logo.png}" src="../static/cloud-foundry-logo.png"/>
+            </div>
+          </div>
+        </div>
+
 		<div class="jumbotron">
 			<h1>Hello, Cloud Foundry Admin!</h1>
 			<p>Do you want to retrieve a list of subscribers?</p>

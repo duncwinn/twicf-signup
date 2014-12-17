@@ -1,6 +1,7 @@
 package io.pivotal.twicf.signup;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.Cloud;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ final class AdminController {
     private final Environment environment;
     private final SubscriptionRepository subscriptionRepository;
 
+    @Autowired(required = false)
+    private Cloud cloud;
+
     @Autowired
     AdminController(Environment environment, SubscriptionRepository subscriptionRepository) {
         this.environment = environment;
@@ -30,7 +34,12 @@ final class AdminController {
     @RequestMapping(method = RequestMethod.GET, value = "/admin")
     String displayForm(Model model) {
         model.addAttribute("profiles", this.environment.getActiveProfiles());
-//        model.addAttribute("services", this.environment.getActiveProfiles());
+
+        if (cloud != null) {
+            System.out.println("Cloud services:" + cloud.getServiceInfos());
+            model.addAttribute("services", cloud.getServiceInfos());
+        }
+
         return "adminForm";
     }
 
