@@ -3,6 +3,7 @@ package io.pivotal.twicf.signup;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.jvnet.mock_javamail.Mailbox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -36,6 +37,7 @@ public class SubscriptionControllerMvcTests {
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        Mailbox.clearAll();
     }
 
     @Test
@@ -56,6 +58,7 @@ public class SubscriptionControllerMvcTests {
     @Test
     public void postCreatesANewSubscription() throws Exception {
         assertEquals(0, this.subscriptionRepository.findAll().size());
+        assertEquals(0, Mailbox.get("testing@example.com").size());
 
         mockMvc.perform(post("/").param("emailAddress", "testing@example.com"))
                 .andExpect(status().isFound())
@@ -63,6 +66,7 @@ public class SubscriptionControllerMvcTests {
 
         assertEquals(1, this.subscriptionRepository.findAll().size());
         assertNotNull(this.subscriptionRepository.findByEmailAddress("testing@example.com"));
+        assertEquals(1, Mailbox.get("testing@example.com").size());
     }
 
     @Test
