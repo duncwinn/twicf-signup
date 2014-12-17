@@ -9,6 +9,7 @@ spring:
   mail:
 #    It's bad to have uname and passwd in a properties file so we moved these to env vars for dev and introspect
 #    vcap.services for CF
+    host: localhost
     port: 2525
 
 logging.level.org.springframework.mail: DEBUG
