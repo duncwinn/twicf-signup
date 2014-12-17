@@ -9,6 +9,9 @@ spring:
   mail:
 #    It's bad to have uname and passwd in a properties file so we moved these to env vars for dev and introspect
 #    vcap.services for CF
+#   there's no JavaMailSender bean in your application context. Boot will create one for you, but only if the
+#   spring.mail.host property is set. Setting it to localhost gets all of the tests bar one to pass
+#   For the app this is set as part of the env vars
     host: localhost
     port: 2525
 

@@ -48,6 +48,11 @@ final class AdminController {
     ModelAndView createSubscription() {
         ModelAndView modelAndView = new ModelAndView("adminResponse");
         modelAndView.addObject("subscriptions", subscriptionRepository.findAll());
+        modelAndView.addObject("profiles", this.environment.getActiveProfiles());
+        if (cloud != null) {
+            modelAndView.addObject("services", cloud.getServiceInfos());
+        }
+
         return modelAndView;
     }
 

@@ -60,7 +60,7 @@ public class Application {
             // @formatter:off
             http
                 .authorizeRequests()
-                    .antMatchers("/", "/confirmation", "/reconfirmation","/nomailconfirmation","/webjars/**", "/css/**").permitAll()
+                    .antMatchers("/", "/confirmation", "/reconfirmation","/nomailconfirmation","/webjars/**", "/css/**","/cloud-foundry-logo.png").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

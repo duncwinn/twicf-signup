@@ -7,6 +7,7 @@
     <title>Administrate</title>
 
     <link href="webjars/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet" />
+    <script src="webjars/bootstrap/3.3.0/js/bootstrap.js" type="text/javascript"></script>
     <!--We use thymeleaf to apply the css and an explicit link to the application css when we
     are not running in a server. else just linking to css/application.css will only render in a server and not in a
     statci env-->
@@ -15,37 +16,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profiles <span class="caret"></span></a>
-
-              <ul class="dropdown-menu" role="menu">
-                <li th:each="profile : ${profiles}">
-                  <a href="#" th:text="${profile}">test-profile</a>
-                </li>
-
-                <li th:remove="all">test-profile-2</li>
-              </ul>
-
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services <span class="caret"></span></a>
-
-              <ul class="dropdown-menu" role="menu">
-                <li th:each="service : ${services}">
-                  <a href="#" th:text="${service}">test-service</a>
-                </li>
-              </ul>
-
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <div th:include="header :: header"></div>
 
 	<div class="container">
         <div class="row">

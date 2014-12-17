@@ -40,16 +40,26 @@ don't have the heavy overhead of using a DB. H@ is now working again.
 
 2. Git was pointing to the old repo - changed .git/config to point to the correct repo, then git add . / git commit / git push
 
-3. Mail the application.yml contained properties for mail but It's bad to have uname and passwd in a properties file
-so we moved these to env vars for dev and introspect vcap.services for CF
+3. pom and other files not visible (files don't appear part of the project). packages view was selected - got back to project to see these files
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+///    LOGGING
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+#  The application.yml contained properties for mail but It's bad to have uname and passwd in a properties file
+   so we moved these to env vars for dev and introspect vcap.services for CF
+#   there's no JavaMailSender bean in your application context. Boot will create one for you, but only if the
+#   spring.mail.host property is set. Setting it to localhost gets all of the tests bar one to pass
+#   For the app this is set as part of the env vars
 
   mail:
 #    username: 1kclQOItwV
 #    host: smtp.sendgrid.net
+#    host: localhost   --------> added this back in for tests to pass
 #    password: Ulq1PwMnON
     port: 2525
 
-4. pom and other files not visible (files don't appear part of the project). packages view was selected - got back to project to see these files
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///    LOGGING
