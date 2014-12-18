@@ -4,7 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cloud.Cloud;
+import org.springframework.cloud.CloudFactory;
+import org.springframework.cloud.config.java.AbstractCloudConfig;
 import org.springframework.cloud.config.java.ServiceScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,13 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
-//You don't strictly need @Configuration as boot will do this for you but it's a good safeguard
-//@ComponentScan searched and creates beans from this package and it's children
 
-
-//@ComponentScan
-//@Configuration
-//@EnableAutoConfiguration
 @SpringBootApplication
 public class Application {
 
@@ -36,18 +35,17 @@ public class Application {
         System.out.println("Current Profiles: " + Arrays.toString(this.profiles));
     }
 
+    //CloudConfiguration needed for Spring to provide the Cloud class to AdminController for getting services
+    //Replaces the need for extending AbstractCloudConfig
     @Configuration
     @ServiceScan
     @Profile("cloud")
     static class CloudConfiguration {
     }
 
-//    //Once you define the above 4 lines for "CloudConfiguration" you can access any injected services.
-//    //For Example
+//    //Once you define the above 4 lines for "CloudConfiguration" you can access any injected services. e.g.:
 //    @Bean
-//    Object doSomethingWithADataSource(DataSource dataSource) {
-//        // TOOD: With DataSource
-//    }
+//    Object doSomethingWithADataSource(DataSource dataSource) { TOOD: With DataSource }
 
     //This section is a lightweight replacement for WebSecurityConfig
     //Needs some additional refactoring as we should not have to include webjars and css - boot should take care of that
@@ -60,7 +58,9 @@ public class Application {
             // @formatter:off
             http
                 .authorizeRequests()
-                    .antMatchers("/", "/confirmation", "/reconfirmation","/nomailconfirmation","/webjars/**", "/css/**","/cloud-foundry-logo.png").permitAll()
+                    .antMatchers("/", "/confirmation", "/reconfirmation", "/nomailconfirmation",
+                            "/unsubscribe", "/unsubscribed", "/nosubscriber", "/nomailunsubscribed",
+                            "/webjars/**", "/css/**","/cloud-foundry-logo.png").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

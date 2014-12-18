@@ -21,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by duncwinn on 12/11/2014.
  */
+//RunWith allows an entry point into JUnit to hook into the test cycle, creating a test framework / sandbox env to run the tests.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
@@ -44,6 +45,7 @@ public class SubscriptionControllerMvcTests {
     public void subscriptionPageIsAccessible() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
+
 
     }
 

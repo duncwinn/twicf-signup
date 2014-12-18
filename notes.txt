@@ -3,6 +3,19 @@ Date: 2014
 Info: Duncan's general pointers during the development of this app.
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+///    @SpringBootApplication
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+The Application starts with  @SpringBootApplication  This annotation replaces:
+//@ComponentScan
+//@Configuration
+//@EnableAutoConfiguration
+
+//You didn't strictly need @Configuration as boot will do this for you but it's a good safeguard
+//@ComponentScan searched and creates beans from this package and it's children
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 ///    Postgres
 //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +34,6 @@ Info: Duncan's general pointers during the development of this app.
 ///    ToDo
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-2. To Do - Spring Profiles Button / Question Mark on Admin Screen
 3. Cloud Connectors
 4. How do you ignore Spring Security locally?
 5. Unsubscribe link - which emails you and unsubscribe link with a time sensitive URL?
@@ -117,9 +129,104 @@ log4j.xml config  ///
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-///    PROFILES
+///    PROFILES + PROPERTIES vs ENV-VARS
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 We are using env vars to set the profile but equally it could be set via JVM as per below
  -Dspring.profiles.active=in-memory
+
+An env var named SPRING_MAIL_HOST is the same as a property named spring.mail.host in application.properties or
+application.yaml (thanks to Boot's relaxed binding support:
+http://docs.spring.io/spring-boot/docs/1.2.0.RELEASE/reference/htmlsingle/#boot-features-external-config-relaxed-binding),
+with configuration in the application.* files taking precedence over the environment variables. All the different sources
+and their order is documented here:
+http://docs.spring.io/spring-boot/docs/1.2.0.RELEASE/reference/htmlsingle/#boot-features-external-config
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+////// OPTIONALS LAMDAS COLLECTIONS AND THE STREAMING API
+////// //Using alt enter to unpack the code in IntelliJ
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+TO get a cloud bean there are a couple of ways to do it:
+
+@ServiceScan and @CloudScan are options. + AbstractCloudConfig...
+Getting a Cloud bean in the app context isn't the purpose of using AbstractCloudConfig, its just a side-effect of using
+that manual configuration technique. AbstractCloudConfig gives you a way to manually create connection beans and customize
+parameters like pooling, etc that you can't customize with @ServiceScan/@CloudScan. Everything else is just support code
+to make one of those two approaches happen.
+
+        //For readability I've removed this line which completes the expression
+                .orElse(Arrays.asList("Local Environment", "No Cloud Present"));
+
+
+        //This is the nice way of doing it....
+        //We are streaming the collection (basically iterating over the collection inline).
+        //We are taking the stream and mapping it to a function
+        //The function gets the service Id and adds “collects” this into a Collection of type list.
+
+        return this.cloud
+                .map(cloud -> cloud.getServiceInfos().stream().map(ServiceInfo::getId).collect(Collectors.toList()))
+
+
+        //Expanding the lamda body on "cloud -> " we can see we are "returning" the results of a function call
+
+        return this.cloud
+                .map(cloud -> {
+                    return cloud.getServiceInfos().stream().map(ServiceInfo::getId).collect(Collectors.toList());
+                })
+
+
+        //Replacing the lamda with an anonymous class we can see we are mapping cloud to a function "apply"
+        //that takes in the cloud (of type Cloud) and returns a list of Strings
+
+        return this.cloud
+                .map(new Function<Cloud, List<String>>() {
+                    @Override
+                    public List<String> apply(Cloud cloud) {
+                        return cloud.getServiceInfos().stream().map(ServiceInfo::getId).collect(Collectors.toList());
+                    }
+                })
+                .orElse(Arrays.asList("Local Environment", "No Cloud Present"));
+
+        //With ServiceInfo::getId: replacing getId method reference with a lamda we are explicetly calling getId on ServiceInfo
+
+        return this.cloud
+                .map(new Function<Cloud, List<String>>() {
+                    @Override
+                    public List<String> apply(Cloud cloud) {
+                        return cloud.getServiceInfos().stream().map((serviceInfo) -> serviceInfo.getId()).collect(Collectors.toList());
+                    }
+                })
+//                .orElse(Arrays.asList("Local Environment", "No Cloud Present"));
+
+
+        //this forces you to do an explicit get on cloud as cloud is an "optional" not a cloud
+        //this is fine but feels wrong as you are forces to get an optional even though it is alwayse there
+        //as you've checked for isPresent.
+
+//        if(this.cloud.isPresent()) {
+//            return this.cloud.get().getServiceInfos().stream().map(ServiceInfo::getId).toArray(String[]::new);
+//        } else {
+//            return new String[0];
+//        }
+
+
+        //This is the old clunky way of doing it.
+//        if (cloud != null) {
+//            final List<ServiceInfo> serviceInfos = cloud.getServiceInfos();
+//
+//            List<String> names = new ArrayList<String>();
+//            for (ServiceInfo serviceInfo : serviceInfos) {
+//                names.add(serviceInfo.getId());
+//            }
+//            return names.toArray(new String[names.size()]);
+//        } else {
+//            return new String[]{};
+//        }
+
 
