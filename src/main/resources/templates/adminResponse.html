@@ -25,7 +25,7 @@
 			<h1>Hello, Cloud Foundry Admin!</h1>
 			<p>Here is a list of subscribers:</p>
             <tr th:each="subscription : ${subscriptions}">
-                <td th:text="${subscription.getEmailAddress()}">Text ...</td>
+                <td th:text="${subscription.getEmailAddress()+','}">Text ...</td>
             </tr>
 		</div>
 	</div>
