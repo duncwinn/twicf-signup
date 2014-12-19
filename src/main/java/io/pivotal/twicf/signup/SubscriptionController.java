@@ -52,14 +52,8 @@ final class SubscriptionController {
             subscriptionRepository.save(new Subscription(emailAddress));
 
             //If Saved we can notify the subscriber via email
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(emailAddress);
-            message.setSubject("Signed Up to twicf");
-            message.setText("Welcome to thisweekincf.com");
-            message.setFrom("thisweekincf");
-
             try {
-                this.mailSender.send(message);
+                this.mailSender.send(createMessage(emailAddress));
             }catch(Exception e){
                 return "redirect:/nomailconfirmation";
             }
@@ -73,6 +67,15 @@ final class SubscriptionController {
 
         //Step 3: Display Confirmation: return the view via redirect... where to go next
         return "redirect:/confirmation";
+    }
+
+    private SimpleMailMessage createMessage(String emailAddress) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(emailAddress);
+        message.setSubject("Signed Up to twicf");
+        message.setText("Welcome to thisweekincf.com");
+        message.setFrom("thisweekincf");
+        return message;
     }
 
     //Use this idiom (redirect from POST->GET) to stop resubmitting (POSTing) of the form when refreshing the browser.
