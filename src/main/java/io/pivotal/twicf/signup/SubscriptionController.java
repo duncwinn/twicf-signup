@@ -69,14 +69,6 @@ final class SubscriptionController {
         return "redirect:/confirmation";
     }
 
-    private SimpleMailMessage createMessage(String emailAddress) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(emailAddress);
-        message.setSubject("Signed Up to twicf");
-        message.setText("Welcome to thisweekincf.com");
-        message.setFrom("thisweekincf");
-        return message;
-    }
 
     //Use this idiom (redirect from POST->GET) to stop resubmitting (POSTing) of the form when refreshing the browser.
     //When refreshing the GET will be refreshed and not the post.
@@ -94,6 +86,16 @@ final class SubscriptionController {
     @RequestMapping(method = RequestMethod.GET, value = "/nomailconfirmation")
     String noMailConfirmation() {
         return "subscribedWithNoEmailConfirmation";
+    }
+
+
+    private SimpleMailMessage createMessage(String emailAddress) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(emailAddress);
+        message.setSubject("Signed Up to twicf");
+        message.setText("Welcome to thisweekincf.com");
+        message.setFrom("thisweekincf");
+        return message;
     }
 
 }

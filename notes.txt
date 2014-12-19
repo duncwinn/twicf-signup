@@ -30,6 +30,8 @@ The Application starts with  @SpringBootApplication  This annotation replaces:
         //then grant privileges for user postgres: grant all on subscription to postgres;
         //exit: ctrl d
 
+        
+-- INSERT INTO subscription VALUES (DEFAULT,'dwinn@pivotal.io','foo', 'USER');
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///    ToDo
 //////////////////////////////////////////////////////////////////////////////////////////////
