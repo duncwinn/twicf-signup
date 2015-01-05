@@ -237,3 +237,8 @@ Need a readme.. that tells users to set the env var from cmd line so it's not ha
 
     cf set-env twicf-signup SECURITY_USER_PASSWORD <*********>; cf restage twicf-signup
 
+
+    Subscribers
+
+    hryan@pivotal.io, mrussell@pivotal.io, jtuchscherer@pivotal.io, jambay@yahoo.com, iandrews@pivotal.io, frodenas@pivotal.io, akearns@pivotal.io, dcicciarelli@pivotal.io,
+

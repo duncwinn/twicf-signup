@@ -98,8 +98,11 @@ final class SubscriptionController {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailAddress);
         message.setSubject("Signed Up to twicf");
-        message.setText("Welcome to thisweekincf.com. You will received an email when updates to twicf are posted. " +
-                "You can unsubscribe at any time at http://twicf-signup.cfapps.io/unsubscribe." );
+//        message.setText("Welcome to thisweekincf.com. You will received an email when updates to twicf are posted. " +
+//                "You can unsubscribe at any time at http://twicf-signup.cfapps.io/unsubscribe.");
+        message.setText("Welcome to This Week in Cloud Foundry, a weekly update of the news in the Cloud Foundry community. " +
+                "Thank you for joining the growing community in support of Cloud Foundry. You will receive an email when new " +
+                "updates are posted to This Week in Cloud Foundry. You can unsubscribe at any time at http://twicf-signup.cfapps.io/unsubscribe. ");
         message.setFrom("thisweekincf");
         return message;
     }
