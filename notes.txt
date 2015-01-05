@@ -30,7 +30,7 @@ The Application starts with  @SpringBootApplication  This annotation replaces:
         //then grant privileges for user postgres: grant all on subscription to postgres;
         //exit: ctrl d
 
-        
+
 -- INSERT INTO subscription VALUES (DEFAULT,'dwinn@pivotal.io','foo', 'USER');
 //////////////////////////////////////////////////////////////////////////////////////////////
 ///    ToDo
@@ -231,4 +231,9 @@ to make one of those two approaches happen.
 //            return new String[]{};
 //        }
 
+
+Need a readme.. that tells users to set the env var from cmd line so it's not hard coded in the manifest...
+    SECURITY_USER_PASSWORD:
+
+    cf set-env twicf-signup SECURITY_USER_PASSWORD <*********>; cf restage twicf-signup
 

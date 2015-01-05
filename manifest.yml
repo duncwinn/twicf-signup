@@ -8,5 +8,4 @@ applications:
   services:
   - twicf-signup-db
   env:
-    SECURITY_USER_PASSWORD: letme1n
     SECURITY_USER_NAME: duncwinn

@@ -35,13 +35,26 @@ public class Application {
         System.out.println("Current Profiles: " + Arrays.toString(this.profiles));
     }
 
+//    @Configuration
+//    @ServiceScan
+//    @Profile({"cloud"})
+//    static class CloudConfig extends AbstractCloudConfig {
+//
+//    }
+
     //CloudConfiguration needed for Spring to provide the Cloud class to AdminController for getting services
     //Replaces the need for extending AbstractCloudConfig
-    @Configuration
-    @ServiceScan
-    @Profile("cloud")
-    static class CloudConfiguration {
-    }
+    //The cloud bean is a post processor of your spring config and will look for anything like DB driver to inject the
+    // config read from cf. Adding @ServiceScan means that spring cloud adds a new bean of type BeanPostProcessor
+    // which is hooking into config after first pass reading of your spring config and is used to amend things like
+    // properties (username/password for drivers) this is what a cloud config bean does.
+
+    //ProTip Git Search: in:java \@ServiceScan
+//    @Configuration
+//    @ServiceScan
+//    @Profile("cloud")
+//    static class CloudConfiguration {
+//    }
 
 //    //Once you define the above 4 lines for "CloudConfiguration" you can access any injected services. e.g.:
 //    @Bean

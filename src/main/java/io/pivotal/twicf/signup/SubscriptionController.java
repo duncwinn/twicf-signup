@@ -5,10 +5,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import javax.mail.internet.MimeMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.sendgrid.*;
 
 
 /*
@@ -19,6 +22,7 @@ string(view name) that gets mapped to HTML
 
 @Controller
 final class SubscriptionController {
+
 
     private final MailSender mailSender;
 
@@ -53,7 +57,7 @@ final class SubscriptionController {
 
             //If Saved we can notify the subscriber via email
             try {
-                this.mailSender.send(createMessage(emailAddress));
+                   this.mailSender.send(createMessage(emailAddress));
             }catch(Exception e){
                 return "redirect:/nomailconfirmation";
             }
@@ -90,12 +94,27 @@ final class SubscriptionController {
 
 
     private SimpleMailMessage createMessage(String emailAddress) {
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(emailAddress);
         message.setSubject("Signed Up to twicf");
-        message.setText("Welcome to thisweekincf.com");
+        message.setText("Welcome to thisweekincf.com. You will received an email when updates to twicf are posted. " +
+                "You can unsubscribe at any time at http://twicf-signup.cfapps.io/unsubscribe." );
         message.setFrom("thisweekincf");
         return message;
     }
 
+//    private MimeMessage createMimeMessage(String emailAddress) {
+//
+//        MimeMessage message = mailSender.createMimeMessage();
+//        message.setTo(emailAddress);
+//        message.setSubject("Signed Up to twicf");
+//
+//        MimeMessageHelper helper = new MimeMessageHelper (message, true, "UTF-8");
+//        helper.setText("<html><body>hello <b>friend</b></body></html>", true);
+//
+//        message.setFrom("thisweekincf");
+//        return message;
+//    }
+    
 }
