@@ -37,8 +37,8 @@ public class Application {
 
 //    @Configuration
 //    @ServiceScan
-//    @Profile({"cloud"})
-//    static class CloudConfig extends AbstractCloudConfig {
+//    @Profile("cloud")
+//    static class CloudConfiguration extends AbstractCloudConfig {
 //
 //    }
 
@@ -50,11 +50,11 @@ public class Application {
     // properties (username/password for drivers) this is what a cloud config bean does.
 
     //ProTip Git Search: in:java \@ServiceScan
-//    @Configuration
-//    @ServiceScan
-//    @Profile("cloud")
-//    static class CloudConfiguration {
-//    }
+    @Configuration
+    @ServiceScan
+    @Profile("cloud")
+    static class CloudConfiguration {
+    }
 
 //    //Once you define the above 4 lines for "CloudConfiguration" you can access any injected services. e.g.:
 //    @Bean

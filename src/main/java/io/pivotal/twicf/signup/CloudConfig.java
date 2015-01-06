@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 /**
  * Created by duncwinn on 23/12/14.
  */
-//@Configuration
+@Configuration
 @Profile({"cloud"})
 public class CloudConfig extends AbstractCloudConfig {
 
