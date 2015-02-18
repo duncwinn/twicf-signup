@@ -7,5 +7,6 @@ applications:
   path: target/twicf-signup.jar
   services:
   - twicf-signup-db
+  - twicf-mail
   env:
     SECURITY_USER_NAME: duncwinn

@@ -27,6 +27,6 @@ spring:
 spring:
   profiles: cloud
   mail:
-    host: ${vcap.services.sendgrid.credentials.hostname}
-    username: ${vcap.services.sendgrid.credentials.username}
-    password: ${vcap.services.sendgrid.credentials.password}
+    host: ${vcap.services.twicf-mail.credentials.hostname}
+    username: ${vcap.services.twicf-mail.credentials.username}
+    password: ${vcap.services.twicf-mail.credentials.password}
